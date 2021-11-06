@@ -5,6 +5,8 @@ public class FrontendViews {
     public static class HealthView{
     }
 
+    public static class CreateUserView{
+    }
 
 
 }

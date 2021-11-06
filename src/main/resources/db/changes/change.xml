@@ -6,7 +6,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet author="suraj" id="suraj-1">
+    <changeSet id="suraj-1" author="suraj">
         <sql>
             CREATE TYPE gender AS ENUM ('male','female','other');
         </sql>
@@ -29,6 +29,7 @@
             <column name="profile_photo" type="VARCHAR"/>
             <column name="header_photo" type="VARCHAR"/>
             <column name="website" type="VARCHAR"/>
+            <column name="email_verified" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="is_active" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="created_time" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueDate="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
@@ -40,5 +41,13 @@
         <rollback>
             <dropTable tableName="person"/>
         </rollback>
+    </changeSet>
+    <changeSet id="suraj-2" author="suraj">
+        <createIndex tableName="users" indexName="idx_user_username">
+            <column name="username" />
+        </createIndex>
+        <createIndex tableName="users" indexName="idx_user_email">
+            <column name="email" />
+        </createIndex>
     </changeSet>
 </databaseChangeLog>
