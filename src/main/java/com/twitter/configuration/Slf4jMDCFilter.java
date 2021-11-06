@@ -26,7 +26,6 @@ public class Slf4jMDCFilter extends OncePerRequestFilter {
     public Slf4jMDCFilter() {
         responseHeader = Slf4jMDCFilterConfiguration.DEFAULT_RESPONSE_TOKEN_HEADER;
         mdcTokenKey = Slf4jMDCFilterConfiguration.DEFAULT_MDC_UUID_TOKEN_KEY;
-        //mdcClientIpKey = Slf4jMDCFilterConfiguration.DEFAULT_MDC_CLIENT_IP_KEY;
         requestHeader = null;
     }
 
@@ -35,7 +34,6 @@ public class Slf4jMDCFilter extends OncePerRequestFilter {
                           final String requestHeader) {
         this.responseHeader = responseHeader;
         this.mdcTokenKey = mdcTokenKey;
-        //this.mdcClientIpKey = mdcClientIPKey;
         this.requestHeader = requestHeader;
     }
 
@@ -56,14 +54,13 @@ public class Slf4jMDCFilter extends OncePerRequestFilter {
             throws java.io.IOException, ServletException {
         try {
             final String token;
-            if(!StringUtils.isEmpty(requestHeader) && !StringUtils.isEmpty(request.getHeader(requestHeader))) {
+            if(StringUtils.hasText(requestHeader) && StringUtils.hasText(request.getHeader(requestHeader))) {
                 token = request.getHeader(requestHeader);
             } else {
-                //token = UUID.randomUUID().toString().toUpperCase().replace("-", "");
                 token = UUID.randomUUID().toString().toUpperCase();
             }
             MDC.put(mdcTokenKey, token);
-            if(!StringUtils.isEmpty(responseHeader)) {
+            if(StringUtils.hasText(responseHeader)) {
                 response.addHeader(responseHeader, token);
             }
             chain.doFilter(request, response);
