@@ -1,0 +1,33 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/twitter
+    username: twitter
+    password: TweepR954
+  liquibase:
+    change-log: classpath:/db/changelog-master.xml
+
+logging:
+  file: /var/tmp/epl-retail.log
+  level:
+    com.surajkj.filter.RequestLoggingFilter: DEBUG
+  pattern:
+    level: "%X{Slf4jMDCFilter.UUID}%7p"
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /docs.html
+    enabled: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+    doc-expansion: none
+    disable-swagger-default-url: true
+    defaultModelsExpandDepth: -1
+
+
+
