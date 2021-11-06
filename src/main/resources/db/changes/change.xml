@@ -10,7 +10,7 @@
         <sql>
             CREATE TYPE gender AS ENUM ('male','female','other');
         </sql>
-        <createTable tableName="user">
+        <createTable tableName="users">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
