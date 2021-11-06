@@ -1,7 +1,7 @@
 package com.twitter.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.twitter.database.entity.Users;
+import com.twitter.dto.User;
 import com.twitter.service.UserService;
 import com.twitter.utility.FrontendViews;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import javax.ws.rs.core.MediaType;
 
 @Slf4j
@@ -22,14 +21,18 @@ import javax.ws.rs.core.MediaType;
 @Tag(name = "User")
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON)
     @Operation(description = "Create user", summary = "User will be created & OTP will be sent to email")
-    public void createUser(@JsonView(FrontendViews.CreateUserView.class) @RequestBody Users user){
-        userService.createUser(user);
+    @JsonView(FrontendViews.CreateUserResponseView.class)
+    public User createUser(@JsonView(FrontendViews.CreateUserView.class) @RequestBody User user){
+        return userService.createUser(user);
     }
-
 
 }

@@ -50,4 +50,11 @@
             <column name="email" />
         </createIndex>
     </changeSet>
+    <changeSet id="suraj-3" author="suraj">
+        <addColumn tableName="users">
+            <column name="password_hash" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
