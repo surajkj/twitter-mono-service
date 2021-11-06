@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 @Slf4j
 @RestController
-@RequestMapping("api/v1/health")
+@RequestMapping("api/v1/user")
 @Tag(name = "User")
 public class UserController {
 
