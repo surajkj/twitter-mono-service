@@ -23,6 +23,10 @@ public class HealthController {
     @Operation(description = "Shows status of application & dependent services", summary = "View application health")
     public Health get(){
         log.info("Hello world!");
-        return Health.builder().applicationStatus(true).databaseStatus(false).build();
+        return Health
+                .builder()
+                .applicationStatus(true)
+                .databaseStatus(false)
+                .build();
     }
 }

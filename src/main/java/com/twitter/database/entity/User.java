@@ -11,14 +11,12 @@ import javax.persistence.Id;
 @Entity
 @Data
 @ToString
-public class Person {
+public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     private String name;
-    private String address;
-
 
 }
