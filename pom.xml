@@ -47,12 +47,12 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.12.4</version>
+			<version>2.13.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.5.9</version>
+			<version>1.5.11</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -62,12 +62,12 @@
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>2.10.10</version>
+			<version>2.10.13</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-joda</artifactId>
-			<version>2.12.4</version>
+			<version>2.13.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,18 +76,33 @@
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
-			<version>4.4.1</version>
+			<version>4.4.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.23</version>
+			<version>42.3.1</version>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-core</artifactId>
+			<version>3.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-jodatime2</artifactId>
+			<version>3.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-guava</artifactId>
+			<version>3.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-sqlobject</artifactId>
+			<version>3.23.0</version>
 		</dependency>
 
 	</dependencies>

@@ -1,24 +1,24 @@
 package com.twitter.database.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.twitter.enums.Gender;
 import com.twitter.utility.FrontendViews;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 import org.joda.time.DateTime;
 
-import javax.persistence.*;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Entity
 @Data
-@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Users {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @NotNull
