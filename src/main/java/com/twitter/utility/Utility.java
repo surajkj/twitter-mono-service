@@ -31,7 +31,7 @@ public class Utility {
         return sb.toString();
     }
 
-    public String getUuid(){
+    public static String getUuid(){
         return UUID.randomUUID().toString();
     }
 

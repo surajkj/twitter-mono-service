@@ -98,6 +98,7 @@
                              referencedTableName="users"
                              referencedColumnNames="id"/>
             </column>
+            <column name="ip_address" type="VARCHAR"/>
             <column name="is_active" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="created_time" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueDate="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>

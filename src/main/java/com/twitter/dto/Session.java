@@ -20,5 +20,6 @@ public class Session {
     private String sessionValue;
     private Long deviceId;
     private Long userId;
+    private String ipAddress;
 
 }

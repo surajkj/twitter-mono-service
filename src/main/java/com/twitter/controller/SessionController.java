@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
 
 @Slf4j
@@ -28,8 +29,8 @@ public class SessionController {
 
     @JsonView(FrontendViews.CreateSessionView.class)
     @GetMapping(produces = MediaType.APPLICATION_JSON)
-    public Session createSession(){
-        return sessionService.createSession();
+    public Session createSession(HttpServletRequest request){
+        return sessionService.createSession(request);
     }
 
 }
