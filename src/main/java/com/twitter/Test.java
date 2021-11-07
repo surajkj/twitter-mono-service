@@ -8,7 +8,7 @@ public class Test {
     public static UserAgentStringParser parser = UADetectorServiceFactory.getResourceModuleParser();
 
     public static void main(String... args){
-        String googleBot21 = "curl/7.54.0";
+        String googleBot21 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
         printUa(parser.parse(googleBot21));
     }
 
