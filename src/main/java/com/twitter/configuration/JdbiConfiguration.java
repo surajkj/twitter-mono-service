@@ -1,6 +1,8 @@
 package com.twitter.configuration;
 
-import com.twitter.database.repository.UserRepository;
+import com.twitter.repository.DeviceRepository;
+import com.twitter.repository.SessionRepository;
+import com.twitter.repository.UserRepository;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.core.spi.JdbiPlugin;
@@ -40,5 +42,15 @@ public class JdbiConfiguration {
     @Bean
     public UserRepository userRepository(Jdbi jdbi){
         return jdbi.onDemand(UserRepository.class);
+    }
+
+    @Bean
+    public DeviceRepository deviceRepository(Jdbi jdbi){
+        return jdbi.onDemand(DeviceRepository.class);
+    }
+
+    @Bean
+    public SessionRepository sessionRepository(Jdbi jdbi){
+        return jdbi.onDemand(SessionRepository.class);
     }
 }

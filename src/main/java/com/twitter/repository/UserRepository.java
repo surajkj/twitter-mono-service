@@ -1,4 +1,4 @@
-package com.twitter.database.repository;
+package com.twitter.repository;
 
 import com.twitter.dto.User;
 import org.jdbi.v3.sqlobject.customizer.BindBean;

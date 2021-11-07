@@ -1,6 +1,6 @@
 package com.twitter.service;
 
-import com.twitter.database.repository.UserRepository;
+import com.twitter.repository.UserRepository;
 import com.twitter.dto.User;
 import com.twitter.security.PasswordUtility;
 import lombok.extern.slf4j.Slf4j;

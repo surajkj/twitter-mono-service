@@ -18,5 +18,4 @@ public class Session {
     private Long deviceId;
     private Long userId;
 
-
 }
