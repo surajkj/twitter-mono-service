@@ -57,4 +57,27 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="suraj-4" author="suraj">
+        <createTable tableName="device">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="agent_type" type="VARCHAR"/>
+            <column name="agent_name" type="VARCHAR"/>
+            <column name="agent_version" type="VARCHAR"/>
+            <column name="agent_producer" type="VARCHAR"/>
+            <column name="os" type="VARCHAR"/>
+            <column name="os_producer" type="VARCHAR"/>
+            <column name="os_version" type="VARCHAR"/>
+            <column name="device_type" type="VARCHAR"/>
+            <column name="user_agent" type="VARCHAR"/>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="created_time" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueDate="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_time" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueDate="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
