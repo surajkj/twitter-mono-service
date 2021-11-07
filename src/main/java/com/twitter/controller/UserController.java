@@ -28,7 +28,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     @Operation(description = "Create user", summary = "User will be created & OTP will be sent to email")
     @JsonView(FrontendViews.CreateUserResponseView.class)
     public User createUser(@JsonView(FrontendViews.CreateUserView.class) @RequestBody User user){

@@ -2,6 +2,8 @@ package com.twitter.utility;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.UUID;
+
 @Slf4j
 public class Utility {
 
@@ -27,6 +29,10 @@ public class Utility {
             sb.append(salt.charAt(index));
         }
         return sb.toString();
+    }
+
+    public String getUuid(){
+        return UUID.randomUUID().toString();
     }
 
 }

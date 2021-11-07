@@ -11,5 +11,8 @@ public class FrontendViews {
     public static class CreateUserResponseView{
     }
 
+    public static class CreateSessionView{
+    }
+
 
 }
