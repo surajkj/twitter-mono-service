@@ -71,4 +71,7 @@ public class User {
 
     private DateTime createdTime;
 
+    @JsonView(FrontendViews.CreateUserView.class)
+    private Session session;
+
  }

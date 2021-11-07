@@ -50,4 +50,12 @@ public class SessionService {
                 .build();
     }
 
+    public Long findIdBySessionValue(String sessionValue){
+        return sessionRepository.findIdBySessionValue(sessionValue);
+    }
+
+    public void updateUserId(Long sessionId,
+                             Long userId){
+        sessionRepository.updateUserId(sessionId, userId);
+    }
 }
