@@ -80,4 +80,31 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="suraj-5" author="suraj">
+        <createTable tableName="session">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="session_value" type="VARCHAR">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_session_value"/>
+            </column>
+            <column name="device_id" type="BIGINT">
+                <constraints foreignKeyName="fk_session_device_id"
+                             referencedTableName="device"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="fk_session_user_id"
+                             referencedTableName="users"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="created_time" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueDate="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_time" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueDate="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
