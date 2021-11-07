@@ -109,6 +109,12 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
+		<!--For decoding user agent-->
+		<dependency>
+			<groupId>net.sf.uadetector</groupId>
+			<artifactId>uadetector-resources</artifactId>
+			<version>2014.10</version>
+		</dependency>
 	</dependencies>
 
 	<build>
