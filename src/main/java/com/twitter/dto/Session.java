@@ -11,18 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Device {
+public class Session {
 
     private Long id;
-    private String userAgent;
-    private String agentType;
-    private String agentName;
-    private String agentVersion;
-    private String agentProducer;
+    private String sessionValue;
+    private Long deviceId;
+    private Long userId;
 
-    private String os;
-    private String osProducer;
-    private String osVersion;
-    private String deviceType;
 
 }
