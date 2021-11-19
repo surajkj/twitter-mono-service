@@ -6,8 +6,4 @@ public interface CustomError {
 
     String getErrorMessage();
 
-    String getDetailedErrorMessage();
-
-    String getErrorMessageSecLang();
-
 }

@@ -24,7 +24,7 @@ public class UserService {
         this.sessionService = sessionService;
     }
 
-    public User createUser(User user) throws Exception {
+    public User createUser(User user) {
         Long sessionId = sessionService.findIdBySessionValue(user.getSession().getSessionValue());
         // If invalid session throw error
         if(sessionId == null) throw new InvalidArgumentException(TWTR10002);

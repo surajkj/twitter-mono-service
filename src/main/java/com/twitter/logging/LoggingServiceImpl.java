@@ -8,12 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-
 @Component
-@Log
+@Slf4j
 public class LoggingServiceImpl implements LoggingService {
 
     @Override
@@ -31,7 +30,7 @@ public class LoggingServiceImpl implements LoggingService {
         }
 
         if (body != null) {
-            stringBuilder.append("body=[" + body + "]");
+            stringBuilder.append("body=[").append(body).append("]");
         }
 
         log.info(stringBuilder.toString());
@@ -39,15 +38,13 @@ public class LoggingServiceImpl implements LoggingService {
 
     @Override
     public void logResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object body) {
-        StringBuilder stringBuilder = new StringBuilder();
+        String stringBuilder = "RESPONSE " +
+                "method=[" + httpServletRequest.getMethod() + "] " +
+                "path=[" + httpServletRequest.getRequestURI() + "] " +
+                "responseHeaders=[" + buildHeadersMap(httpServletResponse) + "] " +
+                "responseBody=[" + body + "] ";
 
-        stringBuilder.append("RESPONSE ");
-        stringBuilder.append("method=[").append(httpServletRequest.getMethod()).append("] ");
-        stringBuilder.append("path=[").append(httpServletRequest.getRequestURI()).append("] ");
-        stringBuilder.append("responseHeaders=[").append(buildHeadersMap(httpServletResponse)).append("] ");
-        stringBuilder.append("responseBody=[").append(body).append("] ");
-
-        log.info(stringBuilder.toString());
+        log.info(stringBuilder);
     }
 
     private Map<String, String> buildParametersMap(HttpServletRequest httpServletRequest) {
@@ -66,9 +63,9 @@ public class LoggingServiceImpl implements LoggingService {
     private Map<String, String> buildHeadersMap(HttpServletRequest request) {
         Map<String, String> map = new HashMap<>();
 
-        Enumeration headerNames = request.getHeaderNames();
+        Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
-            String key = (String) headerNames.nextElement();
+            String key = headerNames.nextElement();
             String value = request.getHeader(key);
             map.put(key, value);
         }

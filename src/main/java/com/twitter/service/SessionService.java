@@ -1,9 +1,7 @@
 package com.twitter.service;
 
-import com.twitter.dto.Device;
 import com.twitter.dto.Session;
 import com.twitter.repository.SessionRepository;
-import com.twitter.utility.UserAgentParser;
 import com.twitter.utility.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

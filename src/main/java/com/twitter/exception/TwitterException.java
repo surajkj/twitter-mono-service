@@ -25,12 +25,4 @@ public abstract class TwitterException extends RuntimeException implements Custo
         return errorMessage;
     }
 
-    @Override
-    public String getDetailedErrorMessage() {
-        return getErrorMessage();
-    }
-
-    public String getErrorMessageSecLang() {
-        return errorMessageSecLang;
-    }
 }

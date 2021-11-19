@@ -41,14 +41,6 @@ public class ErrorMaster {
             this.message = message;
             this.fieldName = fieldName;
         }
-
-        public static ErrorBlock copyWithMessage(final ErrorBlock s,
-                                                 final String message,
-                                                 final String fieldName) {
-            return new ErrorBlock(s.code, message, fieldName);
-        }
-
-
     }
 
 

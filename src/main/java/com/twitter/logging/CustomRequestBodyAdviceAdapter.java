@@ -28,8 +28,10 @@ public class CustomRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
     }
 
     @Override
-    public Object afterBodyRead(Object body, HttpInputMessage inputMessage,
-                                MethodParameter parameter, Type targetType,
+    public Object afterBodyRead(Object body,
+                                HttpInputMessage inputMessage,
+                                MethodParameter parameter,
+                                Type targetType,
                                 Class<? extends HttpMessageConverter<?>> converterType) {
 
         loggingService.logRequest(httpServletRequest, body);

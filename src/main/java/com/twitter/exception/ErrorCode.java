@@ -9,8 +9,8 @@ public enum ErrorCode {
 
     ;
 
-    private String errorCode;
-    private String errorMessage;
+    private final String errorCode;
+    private final String errorMessage;
 
     ErrorCode(String errorCode,
                   String errorMessage) {
@@ -22,16 +22,8 @@ public enum ErrorCode {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
     public String getErrorMessage() {
         return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 
 }

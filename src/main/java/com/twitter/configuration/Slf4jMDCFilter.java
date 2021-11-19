@@ -4,6 +4,7 @@ package com.twitter.configuration;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.slf4j.MDC;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -38,7 +39,7 @@ public class Slf4jMDCFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected boolean isAsyncDispatch(final HttpServletRequest request) {
+    protected boolean isAsyncDispatch(final @NonNull HttpServletRequest request) {
         return false;
     }
 
