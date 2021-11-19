@@ -23,6 +23,9 @@
             <column name="name" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
+            <column name="uuid" type="VARCHAR">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_uuid"/>
+            </column>
             <column name="dob" type="TIMESTAMP WITHOUT TIME ZONE"/>
             <column name="gender" type="GENDER"/>
             <column name="bio" type="VARCHAR"/>
@@ -48,6 +51,9 @@
         </createIndex>
         <createIndex tableName="users" indexName="idx_user_email">
             <column name="email" />
+        </createIndex>
+        <createIndex tableName="users" indexName="idx_user_uuid">
+            <column name="uuid" />
         </createIndex>
     </changeSet>
     <changeSet id="suraj-3" author="suraj">

@@ -4,6 +4,7 @@ import com.twitter.exception.InvalidArgumentException;
 import com.twitter.repository.UserRepository;
 import com.twitter.dto.User;
 import com.twitter.security.PasswordUtility;
+import com.twitter.utility.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ public class UserService {
         if(userRepository.checkUsernameOrEmailExists(user.getUsername(), user.getEmail())) throw new InvalidArgumentException(TWTR10003);
 
         user.setPasswordHash(PasswordUtility.hashPassword(user.getPassword()));
+        user.setUuid(Utility.getUuid());
         Long userId = userRepository.createUser(user);
         log.info("saved user with id {} ", userId);
 

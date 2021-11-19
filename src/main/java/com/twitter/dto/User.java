@@ -67,4 +67,6 @@ public class User {
     @JsonView(FrontendViews.CreateUserView.class)
     private Session session;
 
+    private String uuid;
+
  }
