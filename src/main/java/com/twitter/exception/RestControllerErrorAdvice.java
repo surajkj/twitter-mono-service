@@ -23,7 +23,7 @@ public class RestControllerErrorAdvice {
                 apiVersion,
                 exception.getErrorCode(),
                 exception.getMessage(),
-                new Date());
+                new Date(), null);
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
@@ -35,7 +35,7 @@ public class RestControllerErrorAdvice {
                 apiVersion,
                 exception.getErrorCode(),
                 exception.getMessage(),
-                new Date());
+                new Date(), null);
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
@@ -47,7 +47,7 @@ public class RestControllerErrorAdvice {
                 apiVersion,
                 exception.getErrorCode(),
                 exception.getMessage(),
-                new Date());
+                new Date(), null);
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
@@ -59,7 +59,7 @@ public class RestControllerErrorAdvice {
                 apiVersion,
                 exception.getErrorCode(),
                 exception.getMessage(),
-          new Date());
+          new Date(), null);
 
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }

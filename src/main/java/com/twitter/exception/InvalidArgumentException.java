@@ -10,5 +10,4 @@ public class InvalidArgumentException extends TwitterException {
     public InvalidArgumentException(ErrorCode eplErrorCode) {
         super(eplErrorCode.getErrorCode(), eplErrorCode.getErrorMessage(), null);
     }
-
 }

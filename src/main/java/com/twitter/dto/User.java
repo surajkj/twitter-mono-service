@@ -11,9 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Data
 @Builder
@@ -25,27 +23,23 @@ public class User {
     @JsonView(FrontendViews.CreateUserResponseView.class)
     private Long id;
 
-    @NotNull
-    @Min(1)
-    @Max(20)
+    @NotEmpty
+    @Size(min = 1, max = 20)
     @JsonView(FrontendViews.CreateUserView.class)
     private String username;
 
-    @NotNull
-    @Min(3)
-    @Max(50)
+    @NotEmpty
+    @Email
     @JsonView(FrontendViews.CreateUserView.class)
     private String email;
 
     @NotNull
-    @Min(1)
-    @Max(50)
+    @Size(min = 1, max = 50)
     @JsonView(FrontendViews.CreateUserView.class)
     private String name;
 
     @NotNull
-    @Min(1)
-    @Max(50)
+    @Size(min = 5, max = 50)
     @JsonView(FrontendViews.CreateUserView.class)
     private String password;
 
@@ -56,7 +50,6 @@ public class User {
 
     private Gender gender;
 
-    @Max(250)
     private String bio;
 
     private String profilePhoto;
