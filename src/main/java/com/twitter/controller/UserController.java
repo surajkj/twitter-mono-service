@@ -29,7 +29,7 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     @Operation(description = "Create user", summary = "User will be created & OTP will be sent to email")
     @JsonView(FrontendViews.CreateUserResponseView.class)
-    public User createUser(@JsonView(FrontendViews.CreateUserView.class) @Valid @RequestBody User user) throws Exception {
+    public User createUser(@JsonView(FrontendViews.CreateUserView.class) @Valid @RequestBody User user) {
         return userService.createUser(user);
     }
 

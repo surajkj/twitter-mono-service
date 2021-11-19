@@ -8,7 +8,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 public interface UserRepository {
 
-    @SqlUpdate("insert into users(username, name, email, password_hash) values (:username, :name, :email, :passwordHash);")
+    @SqlUpdate("insert into users(username, name, email, password_hash, uuid) values (:username, :name, :email, :passwordHash, :uuid);")
     @GetGeneratedKeys
     Long createUser(@BindBean User user);
 
