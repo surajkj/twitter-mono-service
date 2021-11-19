@@ -37,9 +37,12 @@ public class User {
     @JsonView(FrontendViews.CreateUserView.class)
     private String name;
 
+    @JsonView(FrontendViews.LoginUserView.class)
+    private String usernameOrEmail;
+
     @NotNull
     @Size(min = 5, max = 50)
-    @JsonView(FrontendViews.CreateUserView.class)
+    @JsonView({FrontendViews.CreateUserView.class, FrontendViews.LoginUserView.class})
     private String password;
 
     @JsonIgnore
@@ -63,7 +66,7 @@ public class User {
 
     private DateTime createdTime;
 
-    @JsonView(FrontendViews.CreateUserView.class)
+    @JsonView({FrontendViews.CreateUserView.class, FrontendViews.LoginUserView.class})
     private Session session;
 
     private String uuid;

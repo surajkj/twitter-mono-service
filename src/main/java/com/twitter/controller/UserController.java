@@ -35,8 +35,8 @@ public class UserController {
 
     @PostMapping( value = "login", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     @Operation(description = "Create user", summary = "User will be created & OTP will be sent to email")
-    public JwtAuthenticationResponse login(@JsonView(FrontendViews.CreateUserView.class) @Valid @RequestBody User user) {
-        return userService.createUser(user);
+    public JwtAuthenticationResponse login(@JsonView(FrontendViews.LoginUserView.class) @RequestBody User user) {
+        return userService.login(user);
     }
 
     @DeleteMapping

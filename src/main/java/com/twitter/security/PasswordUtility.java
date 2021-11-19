@@ -4,6 +4,9 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordUtility {
 
+    private PasswordUtility(){
+    }
+
     public static String hashPassword(String plainTextPassword){
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }

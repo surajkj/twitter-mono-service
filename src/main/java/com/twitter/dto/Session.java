@@ -16,8 +16,10 @@ import lombok.NoArgsConstructor;
 public class Session {
 
     private Long id;
-    @JsonView({FrontendViews.CreateSessionView.class, FrontendViews.CreateUserView.class})
+
+    @JsonView({FrontendViews.CreateSessionView.class,FrontendViews.CreateUserView.class, FrontendViews.LoginUserView.class})
     private String sessionValue;
+
     private Long deviceId;
     private Long userId;
     private String ipAddress;
