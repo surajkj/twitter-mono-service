@@ -8,9 +8,6 @@ public class FrontendViews {
     public static class CreateUserView{
     }
 
-    public static class CreateUserResponseView{
-    }
-
     public static class CreateSessionView{
     }
 

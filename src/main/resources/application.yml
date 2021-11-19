@@ -11,11 +11,15 @@ spring:
     change-log: classpath:/db/changelog-master.xml
 
 logging:
-  file: /var/tmp/epl-retail.log
+  file: /var/tmp/twitter-app.log
   level:
     com.surajkj.filter.RequestLoggingFilter: DEBUG
   pattern:
     level: "%X{Slf4jMDCFilter.UUID}%7p"
+
+app:
+  jwtSecret: rBATbRYfJiMJ5FmhfLD1Z-Y9w-B6hjx5e6Wq2wqTb9g4cA28v2T1hvgpKlneeYCGCPK
+  jwtExpirationInMs: 604800000
 
 springdoc:
   api-docs:
@@ -28,6 +32,4 @@ springdoc:
     doc-expansion: none
     disable-swagger-default-url: true
     defaultModelsExpandDepth: -1
-
-
 

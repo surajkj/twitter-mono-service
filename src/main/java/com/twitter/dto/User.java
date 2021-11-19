@@ -20,7 +20,6 @@ import javax.validation.constraints.*;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class User {
 
-    @JsonView(FrontendViews.CreateUserResponseView.class)
     private Long id;
 
     @NotEmpty

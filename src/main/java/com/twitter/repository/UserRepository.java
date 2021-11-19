@@ -12,7 +12,7 @@ public interface UserRepository {
     @GetGeneratedKeys
     Long createUser(@BindBean User user);
 
-    @SqlQuery("select exists(select id from users where username = :username or email= :email);")
+    @SqlQuery("select exists(select id from users where username = COALESCE(:username, username) or email= COALESCE(:email, email));")
     boolean checkUsernameOrEmailExists(String username,
                                        String email);
 }

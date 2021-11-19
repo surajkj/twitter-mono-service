@@ -1,6 +1,7 @@
 package com.twitter.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.twitter.dto.JwtAuthenticationResponse;
 import com.twitter.dto.User;
 import com.twitter.service.UserService;
 import com.twitter.utility.FrontendViews;
@@ -28,9 +29,20 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     @Operation(description = "Create user", summary = "User will be created & OTP will be sent to email")
-    @JsonView(FrontendViews.CreateUserResponseView.class)
-    public User createUser(@JsonView(FrontendViews.CreateUserView.class) @Valid @RequestBody User user) {
+    public JwtAuthenticationResponse createUser(@JsonView(FrontendViews.CreateUserView.class) @Valid @RequestBody User user) {
         return userService.createUser(user);
+    }
+
+    @PostMapping( value = "login", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    @Operation(description = "Create user", summary = "User will be created & OTP will be sent to email")
+    public JwtAuthenticationResponse login(@JsonView(FrontendViews.CreateUserView.class) @Valid @RequestBody User user) {
+        return userService.createUser(user);
+    }
+
+    @DeleteMapping
+    @Operation(description = "delete user token", summary = "No APIs will be accessible with this token if token is deleted")
+    public void deleteToken(){
+
     }
 
 }

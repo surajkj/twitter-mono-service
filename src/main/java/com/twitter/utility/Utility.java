@@ -2,10 +2,16 @@ package com.twitter.utility;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Random;
 import java.util.UUID;
 
 @Slf4j
 public class Utility {
+
+    private static final Random random = new Random();
+
+    private Utility(){
+    }
 
     public static String generateRandomString(int length){
         String alphaNumericString = "ABCDEFGHIJKLMNPQRSTUVWXYZ"
@@ -24,7 +30,7 @@ public class Utility {
         for (int i = 0; i < length; i++) {
             // generate a random number between
             // 0 to AlphaNumericString variable length
-            int index = (int)(salt.length() * Math.random());
+            int index = salt.length() * random.nextInt();
             // add Character one by one in end of sb
             sb.append(salt.charAt(index));
         }
