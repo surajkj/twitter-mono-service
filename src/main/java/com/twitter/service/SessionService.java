@@ -49,7 +49,7 @@ public class SessionService {
     }
 
     public Long findIdBySessionValue(String sessionValue){
-        return sessionRepository.findIdBySessionValue(sessionValue);
+        return sessionRepository.findFreshIdBySessionValue(sessionValue);
     }
 
     public void updateUserId(Long sessionId,

@@ -14,6 +14,9 @@ public interface SessionRepository {
 
     // Checking null user id, because if it is not null mean's session belongs to different user
     @SqlQuery("select id from session where session_value = :sessionValue and user_id is null;")
+    Long findFreshIdBySessionValue(String sessionValue);
+
+    @SqlQuery("select id from session where session_value = :sessionValue;")
     Long findIdBySessionValue(String sessionValue);
 
     @SqlUpdate("update session set user_id = :userId where id = :sessionId;")

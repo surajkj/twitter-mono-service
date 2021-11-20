@@ -21,4 +21,8 @@ public interface UserRepository {
             "email= COALESCE(:usernameOrEmail, email) and is_active = true;")
     @RegisterBeanMapper(User.class)
     User findPasswordByUserIdOrEmail(String usernameOrEmail);
+
+    @SqlQuery("select id, uuid from users where uuid = :uuid and is_active = true;")
+    @RegisterBeanMapper(User.class)
+    User findByUuid(String uuid);
 }

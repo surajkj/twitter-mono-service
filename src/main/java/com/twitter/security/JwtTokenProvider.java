@@ -1,11 +1,13 @@
 package com.twitter.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 import java.util.*;
 
 @Component
+@Slf4j
 public class JwtTokenProvider {
 
     @Value("${app.jwtSecret}")
@@ -34,4 +36,46 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    public Object getRolesByToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.get("roles");
+    }
+
+    public Object getSessionIdFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.get("sessionId");
+    }
+
+    public String getUUIDFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getSubject();
+    }
+
+        public boolean validateToken(String authToken) {
+        try {
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            return true;
+        } catch(SignatureException ex) {
+            log.warn("Invalid JWT signature");
+        } catch(MalformedJwtException ex) {
+            log.warn("Invalid JWT token");
+        } catch(ExpiredJwtException ex) {
+            log.info("Expired JWT token");
+        } catch(UnsupportedJwtException ex) {
+            log.warn("Unsupported JWT token");
+        } catch(IllegalArgumentException ex) {
+            log.warn("JWT claims string is empty.");
+        }
+        return false;
+    }
 }
