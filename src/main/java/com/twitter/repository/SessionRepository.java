@@ -19,7 +19,10 @@ public interface SessionRepository {
     @SqlQuery("select id from session where session_value = :sessionValue;")
     Long findIdBySessionValue(String sessionValue);
 
-    @SqlUpdate("update session set user_id = :userId where id = :sessionId;")
+    @SqlUpdate("update session set user_id = :userId, updated_time=current_timestamp where id = :sessionId;")
     void updateUserId(Long sessionId,
                       Long userId);
+
+    @SqlUpdate("update session set is_active = false, updated_time=current_timestamp where id = :sessionId;")
+    void invalidateSession(Long sessionId);
 }

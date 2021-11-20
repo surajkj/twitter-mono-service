@@ -56,7 +56,8 @@ public class UserService {
         return getJwtToken(existingUser.getUuid(), user.getSession().getSessionValue());
     }
 
-    public void deleteToken(String sessionId){
+    public void deleteToken(Long sessionId){
+        sessionService.invalidateSession(sessionId);
     }
 
     private Long findSessionId(String sessionValue){

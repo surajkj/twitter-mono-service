@@ -56,4 +56,8 @@ public class SessionService {
                              Long userId){
         sessionRepository.updateUserId(sessionId, userId);
     }
+
+    public void invalidateSession(Long sessionId){
+        sessionRepository.invalidateSession(sessionId);
+    }
 }

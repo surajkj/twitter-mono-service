@@ -3,6 +3,7 @@ package com.twitter.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.twitter.dto.JwtAuthenticationResponse;
 import com.twitter.dto.User;
+import com.twitter.service.SecurityService;
 import com.twitter.service.UserService;
 import com.twitter.utility.FrontendViews;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,10 +22,13 @@ import javax.ws.rs.core.MediaType;
 public class UserController {
 
     private final UserService userService;
+    private final SecurityService securityService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService,
+                          SecurityService securityService) {
         this.userService = userService;
+        this.securityService = securityService;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
@@ -43,6 +47,7 @@ public class UserController {
     @Operation(description = "delete user token", summary = "No APIs will be accessible with this token if token is deleted")
     public void deleteToken(){
         log.info("delete token request");
+        userService.deleteToken(securityService.getSessionId());
     }
 
 }
