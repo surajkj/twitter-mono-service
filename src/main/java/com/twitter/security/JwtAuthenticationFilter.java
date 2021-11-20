@@ -30,13 +30,13 @@ import static com.twitter.exception.ErrorCode.TWTR10007;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JwtTokenProvider tokenProvider;
+    JwtTokenProvider tokenProvider;
 
     @Autowired
-    private SessionRepository sessionDao;
+    SessionRepository sessionDao;
 
     @Autowired
-    private UsersService usersService;
+    UsersService usersService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
