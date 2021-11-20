@@ -3,7 +3,6 @@ package com.twitter.security;
 import com.twitter.dto.Session;
 import com.twitter.repository.SessionRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,7 +42,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        List<String> rolesInToken = null;
         try {
             String jwt = getJwtFromRequest(request);
             log.info("Token received from the client is: {} ", jwt);
@@ -56,23 +54,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     logger.error("Unexpected result in fetching roles from token.");
                     throw new UsernameNotFoundException(TWTR10007.getErrorMessage());
                 }
-                rolesInToken = teamRoles;
                 log.info("Roles in the token are: {}", teamRoles);
-
-                String sessionValue = getSessionValueFromJwt(jwt);
-                Long sessionId = getSessionId(sessionValue);
-                Session session = Session.builder().id(sessionId).sessionValue(sessionValue).build();
                 if(teamRoles.get(0).equals("user")) {
-                    String uuid = tokenProvider.getUUIDFromToken(jwt);
-                    UserDetails userDetails = usersService.loadUserByUUID(uuid, rolesInToken);
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    setDetailsInSecurityContext(authentication, request, teamRoles,session);
+                    setSecurityContext(jwt, teamRoles, request);
                 }
             }
         }catch (Exception ex) {
             log.error("Could not set user authentication in security context {}", ex.getMessage());
         }
         filterChain.doFilter(request, response);
+    }
+
+    private void setSecurityContext(String jwt,
+                                    List<String> teamRoles,
+                                    HttpServletRequest request){
+        Session session = getSessionFromToken(jwt);
+        String uuid = tokenProvider.getUUIDFromToken(jwt);
+        UserDetails userDetails = usersService.loadUserByUUID(uuid, teamRoles);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        setDetailsInSecurityContext(authentication, request, teamRoles,session);
+    }
+
+    private Session getSessionFromToken(String jwt){
+        String sessionValue = getSessionValueFromJwt(jwt);
+        Long sessionId = getSessionId(sessionValue);
+        return Session.builder().id(sessionId).sessionValue(sessionValue).build();
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {

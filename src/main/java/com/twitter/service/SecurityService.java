@@ -12,8 +12,7 @@ public class SecurityService {
 
     public String getUserUUID() {
         String uuid = null;
-        Authentication authentication =
-                SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = getAuthenticationDetail();
         if(authentication != null) {
             uuid = authentication.getName();
         }
@@ -22,13 +21,9 @@ public class SecurityService {
 
     public String getSessionValue() {
         String sessionId = null;
-        Authentication authentication =
-                SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = getAuthenticationDetail();
         if(authentication != null) {
-            Object object =  authentication.getDetails();
-            if(!(object instanceof UserAdditionalDetails))
-                return null;
-            UserAdditionalDetails details = (UserAdditionalDetails) authentication.getDetails();
+            UserAdditionalDetails details = getUserDetail(authentication);
             if(details != null) {
                 sessionId = details.getSession().getSessionValue();
             }
@@ -38,13 +33,9 @@ public class SecurityService {
 
     public Long getSessionId() {
         Long id = null;
-        Authentication authentication =
-                SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = getAuthenticationDetail();
         if(authentication != null) {
-            Object object =  authentication.getDetails();
-            if(!(object instanceof UserAdditionalDetails))
-                return null;
-            UserAdditionalDetails details = (UserAdditionalDetails) authentication.getDetails();
+            UserAdditionalDetails details = getUserDetail(authentication);
             if(details != null) {
                 id = details.getSession().getId();
             }
@@ -52,4 +43,14 @@ public class SecurityService {
         return id;
     }
 
+    private Authentication getAuthenticationDetail(){
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    private UserAdditionalDetails getUserDetail(Authentication authentication){
+        Object object =  authentication.getDetails();
+        if(!(object instanceof UserAdditionalDetails))
+            return null;
+        return  (UserAdditionalDetails) authentication.getDetails();
+    }
 }
