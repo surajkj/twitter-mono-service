@@ -13,10 +13,10 @@ public interface SessionRepository {
     Long createSession(@BindBean Session session);
 
     // Checking null user id, because if it is not null mean's session belongs to different user
-    @SqlQuery("select id from session where session_value = :sessionValue and user_id is null;")
+    @SqlQuery("select id from session where session_value = :sessionValue and user_id is null and is_active=true;")
     Long findFreshIdBySessionValue(String sessionValue);
 
-    @SqlQuery("select id from session where session_value = :sessionValue;")
+    @SqlQuery("select id from session where session_value = :sessionValue and is_active=true;")
     Long findIdBySessionValue(String sessionValue);
 
     @SqlUpdate("update session set user_id = :userId, updated_time=current_timestamp where id = :sessionId;")
