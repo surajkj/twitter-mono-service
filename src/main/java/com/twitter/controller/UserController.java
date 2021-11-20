@@ -42,7 +42,7 @@ public class UserController {
     @DeleteMapping
     @Operation(description = "delete user token", summary = "No APIs will be accessible with this token if token is deleted")
     public void deleteToken(){
-
+        log.info("delete token request");
     }
 
 }

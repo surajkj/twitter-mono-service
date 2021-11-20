@@ -8,6 +8,6 @@ Twitter clone APIs
 3. Return JWT token - Done
 4. Send verification email
 5. Update profile
-6. Set security context
-7. Delete token on logout
-8. Update security for APIs
+6. Set security context - Done
+7. Delete token on logout - Done
+8. Update security for APIs - Done

@@ -59,11 +59,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 rolesInToken = teamRoles;
                 log.info("Roles in the token are: {}", teamRoles);
 
-
                 String sessionValue = getSessionValueFromJwt(jwt);
                 Long sessionId = getSessionId(sessionValue);
                 Session session = Session.builder().id(sessionId).sessionValue(sessionValue).build();
-                if(teamRoles.get(0).equals("customer")) {
+                if(teamRoles.get(0).equals("user")) {
                     String uuid = tokenProvider.getUUIDFromToken(jwt);
                     UserDetails userDetails = usersService.loadUserByUUID(uuid, rolesInToken);
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
